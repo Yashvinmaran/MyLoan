@@ -79,9 +79,7 @@ export const getCurrentUser = async (email, token) => {
       throw new Error('No email provided');
     }
     console.debug('Fetching current user with email:', email, 'and token:', token);
-    const response = await api.get(`/user/me?email=${encodeURIComponent(email)}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await api.get(`/user/${email}`);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.response?.data || error.message || 'Failed to fetch user';
